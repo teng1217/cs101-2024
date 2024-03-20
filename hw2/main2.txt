@@ -1,0 +1,28 @@
+1: #include <stdio.h>
+2 
+3 int main() {
+4     FILE *source_file, *output_file;
+5     char ch;
+6     int line_number = 1;
+7     // 開啟本身的C語言檔案
+8     source_file = fopen("main2.c", "r");
+9 
+10     // 開啟要寫入的txt檔案
+11     output_file = fopen("main2.txt", "w");
+12 
+13     // 讀取檔案內容，並寫入到txt檔案中
+14     fprintf(output_file, "%d: ", line_number); // 初始行數
+15     while ((ch = fgetc(source_file)) != EOF) {
+16         fputc(ch, output_file);
+17         if (ch == '\n') { 
+18             fprintf(output_file, "%d ", ++line_number);
+19         }
+20     }
+21 
+22     // 關閉檔案
+23     fclose(source_file);
+24     fclose(output_file);
+25 
+26     return 0;
+27 }
+28 
