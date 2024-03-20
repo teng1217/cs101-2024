@@ -1,26 +1,59 @@
 #include <stdio.h>
 #include <string.h>
-int main() {
-    FILE *fp;
-    char filename[] = "main3.c"; 
-    char line[100];
-    int lineNumber = 0;
 
-    // 嘗試以只讀方式打開本身的程式檔案
-    fp = fopen(filename, "r");
+typedef struct Books {
+  int id; 
+  int price;
+  char title[100];
+} book_t;
 
-    // 逐行讀取程式碼，直到文件結尾
-    while (fgets(line, sizeof(line), fp)) {
-            lineNumber++;
-        // 檢查該行是否包含main函數
-        if (strstr(line, "int main")) {
-            printf("%d int main() {", lineNumber);
-            break; // 找到後就不用再繼續搜尋
-        }
-    }
-
-
-    fclose(fp);
-
-    return 0;
+void total_price(book_t booklist[], int num) {
+  int sum = 0;
+  for(int i = 0; i <= 5; i ++){
+    sum = sum + booklist[i].price;
+  }
+  printf("%d\n", sum);
 }
+
+void list_books(book_t booklist[], int num){
+  
+  printf("%d ",booklist[num].price);
+  
+}
+
+int main() {
+book_t book[6];
+ book[0].id=1;
+ book[0].price=1000;
+ strcpy(book[0].title,"All the Light We Cannot See");
+ 
+ book[1].id=2;
+ book[1].price=300;
+ strcpy(book[1].title,"The 38 Letters from J.D.Rockefeller to his son");
+ 
+ book[2].id=3;
+ book[2].price=1000;
+ strcpy(book[2].title,"The Ballad of Songbirds and Snakes");
+ 
+ book[3].id=4;
+ book[3].price=550;
+ strcpy(book[3].title,"Killers of the Flower Moon");
+ 
+ book[4].id=5;
+ book[4].price=870;
+ strcpy(book[4].title,"Elon Musk");
+ 
+ book[5].id=6;
+ book[5].price=1344;
+ strcpy(book[5].title,"Milk and Honey 12-Month 2024");
+
+ int num;
+ printf("請輸入：");
+ scanf("%d", &num);
+  
+
+list_books(book, num);
+total_price(book, num);
+  return 0;
+}
+
